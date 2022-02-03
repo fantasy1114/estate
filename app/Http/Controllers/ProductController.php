@@ -123,4 +123,16 @@ class ProductController extends Controller
         return view('front.application')->with('items', $items);
     }
 
+    public function favourite()
+    {
+        $products = DB::table('products')->get();
+        $allproducts = DB::table('products')->get();
+        $categories = Category::with('category_product')->get();
+        $maxprice = DB::table('items')->max('price');
+        $items = DB::table('items')->where('favourite', 'on')->get();
+
+        return view('front.favourite')->with('products', $products)->with('items', $items)->with('allproducts', $allproducts)->with('categories', $categories)->with('maxprice', $maxprice);
+        
+    }
+
 }

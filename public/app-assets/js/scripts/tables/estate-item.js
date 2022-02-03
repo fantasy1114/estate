@@ -25,6 +25,7 @@ $(function () {
                 { data: 'item_room' },
                 { data: 'item_total' },
                 { data: 'item_balcony' },
+                { data: 'item_name' },
                 { data: 'item_rent' },
                 { data: 'item_price' },
                 { data: 'item_infos' },
@@ -206,6 +207,7 @@ $(function () {
         $("#uitem_balcony").val($(this).data('balcony'));
         $("#uitem_rent").val($(this).data('rent'));
         $("#uitem_price").val($(this).data('price'));
+        $("#uitem_name").val($(this).data('name'));
 
         $(".edit-data-modal").modal('show');
 

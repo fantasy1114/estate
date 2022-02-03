@@ -11,9 +11,10 @@ $('.item_favourite').on('click', function(e){
     var id = $(this).data('id');
     var url = '/favourite/' + id;
     var favourite_num = $('.item__favourite_on').length;
+
     if (favourite_num < 6){
         $(this).hasClass('item__favourite_off') ? $('.item_favourite' + id).removeClass( "item__favourite_off" ).addClass( "item__favourite_on" ) : $('.item_favourite' + id).removeClass( "item__favourite_on" ).addClass( "item__favourite_off" );
-    
+        $('.favourite__link' + id).hasClass('d-block') ? $('.favourite__link' + id).removeClass('d-block').addClass('d-none') : $('.favourite__link' + id).removeClass('d-none').addClass('d-block');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -25,7 +26,7 @@ $('.item_favourite').on('click', function(e){
     }
     else if(favourite_num = 6 && $(this).hasClass('item__favourite_on')){
         $('.item_favourite' + id).removeClass( "item__favourite_on" ).addClass( "item__favourite_off" );
-    
+        $('.favourite__link' + id).hasClass('d-block') ? $('.favourite__link' + id).removeClass('d-block').addClass('d-none') : $('.favourite__link' + id).removeClass('d-none').addClass('d-block');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -101,4 +102,65 @@ $('#pips-range').on('click mouseover', function(e){
         }
     }
     
+})
+
+$('#basicSelect').on('change', function(e){
+    var val = $(this).val();
+    window.location.href = '/show/' + val;            
+});
+
+$('.filter__room__one').on('click', function(e){
+    var i = 0
+    for(i; i< $('.item__room').length; i++){
+        if($('.item__room:eq('+i+')').text() == '1.5'){
+            $('.item__room:eq('+i+')').parent().parent().show();
+        }
+        else{
+            $('.item__room:eq('+i+')').parent().parent().hide(); 
+        }
+    }
+});
+$('.filter__room__two').on('click', function(e){
+    var i = 0
+    for(i; i< $('.item__room').length; i++){
+        if($('.item__room:eq('+i+')').text() == '2.5'){
+            $('.item__room:eq('+i+')').parent().parent().show();
+        }
+        else{
+            $('.item__room:eq('+i+')').parent().parent().hide(); 
+        }
+    }
+});
+$('.filter__room__three').on('click', function(e){
+    var i = 0
+    for(i; i< $('.item__room').length; i++){
+        if($('.item__room:eq('+i+')').text() == '3.5'){
+            $('.item__room:eq('+i+')').parent().parent().show();
+        }
+        else{
+            $('.item__room:eq('+i+')').parent().parent().hide(); 
+        }
+    }
+});
+$('.filter__name__birke').on('click', function(e){
+    var i = 0;
+    for(i; i< $('.item__name').length; i++){
+        if($('.item__name:eq('+i+')').text() == 'BIRKE'){
+            $('.item__name:eq('+i+')').parent().parent().show();
+        }
+        else{
+            $('.item__name:eq('+i+')').parent().parent().hide();
+        }
+    }
+});
+$('.filter__name__carolina').on('click', function(e){
+    var i = 0;
+    for(i; i< $('.item__name').length; i++){
+        if($('.item__name:eq('+i+')').text() == 'CAROLINA'){
+            $('.item__name:eq('+i+')').parent().parent().show();
+        }
+        else{
+            $('.item__name:eq('+i+')').parent().parent().hide();
+        }
+    }
 })

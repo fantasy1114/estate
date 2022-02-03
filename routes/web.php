@@ -53,7 +53,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('show/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('application/{product}', [ProductController::class, 'application'])->name('product.application');
+Route::get('favourite', [ProductController::class, 'favourite'])->name('product.favourite');
 Route::post('favourite/{id}', [ItemController::class, 'favourite'])->name('item.favourite');
+
 
 
 //clear cache

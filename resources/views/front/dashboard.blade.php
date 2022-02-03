@@ -73,6 +73,24 @@
             color: red;
             fill: red;
         }
+        select.form-control:not([multiple='multiple']){
+            background-image: url('/app-assets/images/page/arrow-down.png');
+            background-position: calc(100% - 0px) 0px, calc(100% - 20px) 13px, 100% 0;
+            background-size: 60px 60px, 0px 0px;
+        }
+        .category__select{
+            width: 70%;
+        }
+        @media (max-width: 992px) { 
+            .category__select{
+                width: 80%;
+            }
+        }
+        @media (max-width: 768px) { 
+            .category__select{
+                width: 100%;
+            }
+        }
     </style>
     <!-- END STYLE CSS -->
 </head>
@@ -80,10 +98,22 @@
 <body>
     <div class="col-12">
         <div class="row mt-5">
-            <div class="col-12 text-center">
-                @foreach ($products as $product)
-                    <h1>{{$product->product_name}}</h1>
-                @endforeach
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div class="form-group category__select">
+                    <h3 for="basicSelect">WOHNEN IN</h3>
+                    <select class="form-control" id="basicSelect" style="height: 60px; font-size: 24px;">
+                        @foreach ($categories as $category)
+                            <optgroup label="{{$category->category_name}}">
+                                @foreach ($category->category_product as $product)
+                                    <option value="{{$product->id}}" {{str_replace('show/', '',Request::path()) == $product->id ? 'selected' : ''}}>{{$product->product_name}}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
+                        
+                    </select>
+                </div>
+              
             </div>
             <div class="col-12 d-flex justify-content-end mb-1">
                 <a href="javascript:void(0)" class="btn btn-light btn-heart rounded btn_heart_off">
@@ -100,17 +130,19 @@
                 <div class="menu__title h6 py-1 ml-2">
                     MIETEN IN OSTERMUNDINGEN
                 </div>
-                @foreach ($categories as $category)
-                    <div class="mt-1">
-                        <i data-feather='arrow-right'></i> &nbsp;<span class="menu__category h5">{{$category->category_name}}</span>
-                        @foreach ($category->category_product as $product)
-                            <a href="/show/{{$product->id}}" class="d-flex align-items-center menu__category ml-2">{{$product->product_name}}</a> 
-                        @endforeach
-                        
-                    </div>
+                
+                <div class="mt-1">
+                    <i data-feather='arrow-right'></i> &nbsp;<span class="menu__category h5">AHORN</span>
+                    <a class="d-block ml-2 text-dark filter__name__birke">BIRKE</a>
+                    <a class="d-block ml-2 text-dark filter__name__carolina">CAROLINA</a>
+                </div>
+                <div class="mt-1">
+                    <i data-feather='arrow-right'></i> &nbsp;<span class="menu__category h5">ALLE</span>
+                    <a class="d-block ml-2 text-dark filter__room__one">1.5 ZIMMER</a>
+                    <a class="d-block ml-2 text-dark filter__room__two">2.5 ZIMMER</a> 
+                    <a class="d-block ml-2 text-dark filter__room__three">3.5 ZIMMER</a>
+                </div>  
 
-                @endforeach
-        
                 <div class="form-group align-items-center menu__category mt-2 ml-2">
                     {{-- <label for="basic-range" class="h5">PREIS</label>
                     <div id="hover" class="my-1" style="background-color: #4b4b4b;"></div>
@@ -163,7 +195,7 @@
                                     </td>
                                     <td>{{$item->floor}}</td>
                                     <td>{{$item->apt}}</td>
-                                    <td>{{$item->room}} </td>
+                                    <td><span class="item__room">{{$item->room}}</span><span class="d-none item__name">{{$item->name}}</span></td>
                                     <td>{{$item->total}} m<sup>2</sup></td>
                                     <td>{{$item->balcony}} m<sup>2</sup></td>
                                     <td><a href="@if($item->rent == 'Jetzt bewerben') /application/{{$item->id}} @endif" style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</a></td>
@@ -181,19 +213,21 @@
                                     <i data-feather="heart" class="icon__fill"></i> AHORN
                                     <span class="d-none price__filter">{{$item->price}}</span>
                                 </a>
-                                
                             </div>
                             <div class="mt-2">
-                                <img src="{{$item->item_img}}">
+                                <img src="{{$item->item_img}}" class="w-100">
                             </div>
                             <div class="d-flex justify-content-between mt-2 column__border__one">
-                                <span>{{$item->floor}}</span> <span>{{$item->apt}}</span>
+                                <span>{{$item->floor}}</span> <span class="item__room">{{$item->room}}</span> <span class="d-none item__name">{{$item->name}}</span>
                             </div>
                             <div class="d-flex justify-content-between column__border">
                                 <span>{{$item->total}} m<sup>2</sup></span> <span>CHF {{$item->price}}</span>
                             </div>
+                            <div class="column__border__last favourite__link{{$item->id}} {{$item->favourite == 'on' ? 'd-block' : 'd-none'}}">
+                                <a href="/favourite" style="color: red;">Favorit</a>
+                            </div>
                             <div class="d-flex justify-content-between column__border__last">
-                                <a href="@if($item->rent == 'Jetzt bewerben') /application/{{$item->id}} @else # @endif" style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</a>
+                                <a href="@if($item->rent == 'Jetzt bewerben') /application/{{$item->id}} @else # @endif" style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}} @if($item->rent == 'Jetzt bewerben')<i data-feather='arrow-right'></i> @endif</a>
                             </div>
                         </div>
                     @endforeach
@@ -209,7 +243,10 @@
     @include('layouts.footer')
     <script src="{{asset('app-assets/js/scripts/pages/dashboard.js')}}"></script>
     <!-- END JS IMPORT -->
+    <script>
+        
 
+    </script>
 </body>
 
 </html>
