@@ -19,8 +19,8 @@
                     <div class="auth-inner row m-0">
                         <!-- Brand logo-->
                         <a class="brand-logo align-items-center" href="javascript:void(0);">
-                            <img src="{{ asset('app-assets/images/favicon/estate.png') }}">
-                            <h2 class="brand-text ml-1">Estate</h2>
+                            <img src="{{ asset('app-assets/images/favicon/estate.png') }}" style="width: 128px; height: 64px;">
+                            {{-- <h2 class="brand-text ml-1">Estate</h2> --}}
                         </a>
                         <!-- /Brand logo-->
                         <!-- Left Text-->
