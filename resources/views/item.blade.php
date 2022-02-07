@@ -40,7 +40,6 @@
                                         <th>Room</th>
                                         <th>Total</th>
                                         <th>Balcony</th>
-                                        <th>Name</th>
                                         <th>Status</th>
                                         <th>Price</th>
                                         <th>Infos</th>
@@ -56,12 +55,11 @@
                                         <td>{{$item->room}}</td>
                                         <td>{{$item->total}} m<sup>2</sup></td>
                                         <td>{{$item->balcony}} m<sup>2</sup></td>
-                                        <td>{{$item->name}}</td>
                                         <td><span style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</span></td>
                                         <td>CHF {{$item->price}}</td>
                                         <td><i data-feather='file-text' style="zoom:1.2"></i> <a href="{{$item->infos}}" target="_blank" style="text-decoration: underline;">Details</a></td>
                                         <td>
-                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}" data-name="{{$item->name}}">
+                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}">
                                                 <i data-feather='edit'></i>
                                                 <span></span>
                                             </button>
@@ -144,13 +142,7 @@
                                                 placeholder="8.1 m2" name="item_balcony" aria-label="item_balcony"
                                                 aria-describedby="item_balcony" step="0.01"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="item_name">Name</label>
-                                            <select class="form-control" name="item_name" id="item_name">
-                                                <option value="BIRKE">BIRKE</option>
-                                                <option value="CAROLINA">CAROLINA</option>
-                                            </select>
-                                        </div>
+
                                         <div class="form-group">
                                             <label class="form-label" for="item_rent">Status</label>
                                             <select class="form-control" name="item_rent" id="item_rent">
@@ -252,14 +244,6 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label" for="uitem_name">Name</label>
-                                            <select class="form-control" name="uitem_name" id="uitem_name">
-                                                <option value="BIRKE">BIRKE</option>
-                                                <option value="CAROLINA">CAROLINA</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
                                             <div class="form-group">
                                                 <label class="form-label" for="uitem_rent">Status</label>
                                                 <select class="form-control" name="uitem_rent" id="uitem_rent">
@@ -331,12 +315,6 @@
     <script src="{{asset('app-assets/js/scripts/tables/estate-item.js')}}"></script>
     <!-- END: Page JS-->
     
-    <script>
-        $(function() {
-            
-           
-        });
-    </script>
 </body>
 <!-- END: Body-->
 

@@ -112,11 +112,11 @@ $(function () {
         newUserForm.on('submit', function (e) {
             var img_src = $('#product-upload-img').attr('src');
             var product_img = $('#product-upload').val();
-
+            
             var isValid = newUserForm.valid();
             var formData = new FormData(this);
             e.preventDefault();
-            if (isValid && img_src != '#' && product_img != '') {
+            if (isValid && img_src != '#' && product_img != '' && product_img.includes('.svg')) {
                 $.ajax({
                     type: 'post',
                     url: '/product-create',
@@ -184,29 +184,34 @@ $(function () {
         $("#ucategory_id").val($(this).data('category_id'));
         $("#uproduct-upload-img").attr('src', $(this).data('product_img'));
         $(".edit-data-modal").modal('show');
-
+        
         $('.edit-data-form').on("submit", function (e) {
             var formData = new FormData(this);
+            var datas = $("#uproduct-upload-img").attr('src');
+            
             e.preventDefault();
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: url,
-                cache: false,
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data['success']) {
-                        window.location.reload();
+            if(datas.includes('data:image/svg') || datas.includes('.svg')){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    cache: false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data['success']) {
+                            window.location.reload();
+                        }
+                        else {
+                            console.log('error');
+                        }
                     }
-                    else {
-                        console.log('error');
-                    }
-                }
-            })
+                })
+            }
+            
         });
     });
 

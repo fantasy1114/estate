@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
+use App\Models\Product;
+use stdClass;
 use Exception;
 
 class CategoriesController extends Controller
@@ -45,6 +48,15 @@ class CategoriesController extends Controller
         catch(Exception $e){
             return response()->json(['success' => false]);
         }
+    }
+
+    public function show($id)
+    {
+        $products = Product::with('product_item')->where('category_id', $id)->get();
+        $categories = Category::with('category_product')->get();        
+        $maxprice = DB::table('items')->max('price');
+        
+        return view('front.categorydashboard')->with('products', $products)->with('categories', $categories)->with('maxprice', $maxprice);
     }
 
 }

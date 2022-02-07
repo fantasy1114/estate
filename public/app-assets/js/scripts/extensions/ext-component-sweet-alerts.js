@@ -38,6 +38,9 @@ $(function () {
                 if(data['success']){
                     window.location.reload();
                 }
+                else{
+                  $('#remove-product-btn').click();
+                }
             }
         });
       }
@@ -105,7 +108,6 @@ $(function () {
                     window.location.reload();
                 }
                 else{
-                  console.log('asdasdads');
                   $('#change-category-btn').click();
                 }
             }

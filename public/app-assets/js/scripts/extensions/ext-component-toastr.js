@@ -14,6 +14,7 @@ $(function () {
     changepass = $('#change-pass-error'),
     changeproduct = $('#change-product-btn'),
     categoryremoveerror = $('#change-category-btn'),
+    productremoveerror = $('#remove-product-btn'),
     clearToastObj;
 
 
@@ -39,6 +40,14 @@ $(function () {
 
   categoryremoveerror.on('click', function () {
     toastr['error']('👋 There are products in this category. Please remove the product to remove this category.', 'Error!', {
+      closeButton: true,
+      tapToDismiss: false,
+      rtl: isRtl
+    });
+  });
+
+  productremoveerror.on('click', function () {
+    toastr['error']('👋 There are items in this product. Please remove the items to remove this product.', 'Error!', {
       closeButton: true,
       tapToDismiss: false,
       rtl: isRtl

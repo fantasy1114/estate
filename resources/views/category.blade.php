@@ -53,6 +53,10 @@
                                                 <span></span>
                                             </button>
 
+                                            <button class="dropdown-item d-inline data_show_btn w-auto rounded" data-id="{{$category->id}}">
+                                                <i data-feather='eye'></i>
+                                            </button>
+
                                         </td>
                                     
                                     </tr>
@@ -131,7 +135,11 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/tables/estate-category.js')}}"></script>
     <!-- END: Page JS-->
-    
+    <script>
+        $(document).on('click', '.data_show_btn', function(e){
+            window.location.href = '/category/' + $(this).data('id');
+        });
+    </script>
 </body>
 <!-- END: Body-->
 

@@ -93,13 +93,18 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $products = DB::table('products')->where('id', $id)->get();
+        $pid = DB::table('products')->where('id', $id)->get()[0]->category_id;
+        $product_name = DB::table('products')->where('id', $id)->get()[0]->product_name;
+        $category_id = DB::table('products')->where('id', $id)->get()[0]->category_id;
+        $product_img = DB::table('products')->where('id', $id)->get()[0]->product_img;
+        $isometry = DB::table('products')->where('id', $id)->get()[0]->isometry;
+        $products = DB::table('products')->where('category_id', $pid)->get();
         $allproducts = DB::table('products')->get();
         $categories = Category::with('category_product')->get();
         $items = DB::table('items')->where('product_id', $id)->get();
         $maxprice = DB::table('items')->max('price');
         
-        return view('front.dashboard')->with('products', $products)->with('items', $items)->with('allproducts', $allproducts)->with('categories', $categories)->with('maxprice', $maxprice);
+        return view('front.dashboard')->with('products', $products)->with('items', $items)->with('allproducts', $allproducts)->with('categories', $categories)->with('maxprice', $maxprice)->with('product_name', $product_name)->with('category_id', $category_id)->with('product_img', $product_img)->with('isometry', $isometry);
         
     }
 

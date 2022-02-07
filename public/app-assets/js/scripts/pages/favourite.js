@@ -1,11 +1,11 @@
-$('.tr_change').on("mouseover", function (e){
-    var img_name = $(this).data("over");
-    $("#loaded_img").attr("src", img_name);
-});
-$(".tr_change").on('mouseleave', function() {
-    var img_name = $('#loaded_img').data("over");
-    $("#loaded_img").attr("src", img_name);
-});
+// $('.tr_change').on("mouseover", function (e){
+//     var img_name = $(this).data("over");
+//     $("#loaded_img").attr("src", img_name);
+// });
+// $(".tr_change").on('mouseleave', function() {
+//     var img_name = $('#loaded_img').data("over");
+//     $("#loaded_img").attr("src", img_name);
+// });
 
 $('.item_favourite').on('click', function(e){
     var id = $(this).data('id');

@@ -101,14 +101,14 @@
             <div class="col-md-3"></div>
             <div class="col-md-9">
                 <div class="form-group category__select">
-                    <h3 for="basicSelect">WOHNEN IN</h3>
+                    
+                    <h3 for="basicSelect">{{$product_name}}</h3>
+                    
                     <select class="form-control" id="basicSelect" style="height: 60px; font-size: 24px;">
                         @foreach ($categories as $category)
-                            <optgroup label="{{$category->category_name}}">
-                                @foreach ($category->category_product as $product)
-                                    <option value="{{$product->id}}" {{str_replace('show/', '',Request::path()) == $product->id ? 'selected' : ''}}>{{$product->product_name}}</option>
-                                @endforeach
-                            </optgroup>
+                            
+                            <option value="{{$category->id}}" {{$category_id == $category->id ? 'selected' : ''}}>{{$category->category_name}}</option>
+                                
                         @endforeach
                         
                     </select>
@@ -133,8 +133,10 @@
                 
                 <div class="mt-1">
                     <i data-feather='arrow-right'></i> &nbsp;<span class="menu__category h5">AHORN</span>
-                    <a class="d-block ml-2 text-dark filter__name__birke">BIRKE</a>
-                    <a class="d-block ml-2 text-dark filter__name__carolina">CAROLINA</a>
+                    @foreach ($products as $product)
+                        <a href="/show/{{$product->id}}" class="d-block ml-2 text-dark">{{$product->product_name}}</a>
+                    @endforeach
+                    
                 </div>
                 <div class="mt-1">
                     <i data-feather='arrow-right'></i> &nbsp;<span class="menu__category h5">ALLE</span>
@@ -144,9 +146,6 @@
                 </div>  
 
                 <div class="form-group align-items-center menu__category mt-2 ml-2">
-                    {{-- <label for="basic-range" class="h5">PREIS</label>
-                    <div id="hover" class="my-1" style="background-color: #4b4b4b;"></div>
-                    <span class="hover_val" id="hover-val"></span> --}}
                     <!-- Slider Scales / Pips and Steps section -->
                     <section id="slider-scales-pips">
                         <label for="basic-range" class="h5">PREIS</label>
@@ -160,9 +159,7 @@
 
                 <div class="ml-2">
                     <!-- Loaded image -->
-                    @foreach ($products as $product)
-                        <img src="{{$product->product_img}}" class="loaded_img {{$product->isometry != '1' ? 'd-none' : ''}}" id="loaded_img" data-over="{{$product->product_img}}">
-                    @endforeach
+                        <img src="{{$product_img}}" class="loaded_img {{$isometry != '1' ? 'd-none' : ''}}" id="loaded_img" data-over="{{$product_img}}">
                 </div>
             </div> 
             <div class="col-md-9 pl-md-3">
@@ -195,7 +192,7 @@
                                     </td>
                                     <td>{{$item->floor}}</td>
                                     <td>{{$item->apt}}</td>
-                                    <td><span class="item__room">{{$item->room}}</span><span class="d-none item__name">{{$item->name}}</span></td>
+                                    <td><span class="item__room">{{$item->room}}</span></td>
                                     <td>{{$item->total}} m<sup>2</sup></td>
                                     <td>{{$item->balcony}} m<sup>2</sup></td>
                                     <td><a href="@if($item->rent == 'Jetzt bewerben') /application/{{$item->id}} @endif" style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</a></td>
@@ -215,10 +212,10 @@
                                 </a>
                             </div>
                             <div class="mt-2">
-                                <img src="{{$item->item_img}}" class="w-100">
+                                <img src="{{$item->item_img}}" class="w-100" style="height: 100px;">
                             </div>
                             <div class="d-flex justify-content-between mt-2 column__border__one">
-                                <span>{{$item->floor}}</span> <span class="item__room">{{$item->room}}</span> <span class="d-none item__name">{{$item->name}}</span>
+                                <span>{{$item->floor}}</span> <span class="item__room">{{$item->room}}</span> 
                             </div>
                             <div class="d-flex justify-content-between column__border">
                                 <span>{{$item->total}} m<sup>2</sup></span> <span>CHF {{$item->price}}</span>

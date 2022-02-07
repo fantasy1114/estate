@@ -1,11 +1,11 @@
-$('.tr_change').on("mouseover", function (e){
-    var img_name = $(this).data("over");
-    $("#loaded_img").attr("src", img_name);
-});
-$(".tr_change").on('mouseleave', function() {
-    var img_name = $('#loaded_img').data("over");
-    $("#loaded_img").attr("src", img_name);
-});
+// $('.tr_change').on("mouseover", function (e){
+//     var img_name = $(this).data("over");
+//     $("#loaded_img").attr("src", img_name);
+// });
+// $(".tr_change").on('mouseleave', function() {
+//     var img_name = $('#loaded_img').data("over");
+//     $("#loaded_img").attr("src", img_name);
+// });
 
 $('.item_favourite').on('click', function(e){
     var id = $(this).data('id');
@@ -106,7 +106,7 @@ $('#pips-range').on('click mouseover', function(e){
 
 $('#basicSelect').on('change', function(e){
     var val = $(this).val();
-    window.location.href = '/show/' + val;            
+    window.location.href = '/category/' + val;            
 });
 
 $('.filter__room__one').on('click', function(e){

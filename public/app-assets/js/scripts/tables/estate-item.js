@@ -25,7 +25,6 @@ $(function () {
                 { data: 'item_room' },
                 { data: 'item_total' },
                 { data: 'item_balcony' },
-                { data: 'item_name' },
                 { data: 'item_rent' },
                 { data: 'item_price' },
                 { data: 'item_infos' },
@@ -136,7 +135,7 @@ $(function () {
             var isValid = newUserForm.valid();
             var formData = new FormData(this);
             e.preventDefault();
-            if (isValid && img_src != '#' && img_src != '' && item_infos != undefined && item_infos != '' && item_upload != '') {
+            if (isValid && img_src != '#' && img_src != '' && item_infos != undefined && item_infos != '' && item_upload != '' && !item_upload.includes('.svg')) {
                 $.ajax({
                     type: 'post',
                     url: '/item-create',
@@ -207,32 +206,35 @@ $(function () {
         $("#uitem_balcony").val($(this).data('balcony'));
         $("#uitem_rent").val($(this).data('rent'));
         $("#uitem_price").val($(this).data('price'));
-        $("#uitem_name").val($(this).data('name'));
 
         $(".edit-data-modal").modal('show');
 
         $('.edit-data-form').on("submit", function (e) {
             var formData = new FormData(this);
+            var datas = $("#uitem-upload-img").attr('src');
             e.preventDefault();
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: url,
-                cache: false,
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data['success']) {
-                        window.location.reload();
+            if(!datas.includes('data:image/svg')){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    cache: false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data['success']) {
+                            window.location.reload();
+                        }
+                        else {
+                            console.log('error');
+                        }
                     }
-                    else {
-                        console.log('error');
-                    }
-                }
-            })
+                })
+            }
+            
         });
     });
 

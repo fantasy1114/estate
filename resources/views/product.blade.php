@@ -210,6 +210,7 @@
                         <!-- Modal END -->
                     </div>
                     <button id="change-product-btn" hidden></button>
+                    <button id="remove-product-btn" hidden></button>
                 </section>
                 <!-- Product list ends -->
             </div>

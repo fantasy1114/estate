@@ -27,7 +27,6 @@ class ItemController extends Controller
             'room' => $request->item_room,
             'total' => $request->item_total,
             'balcony' => $request->item_balcony,
-            'name' => $request->item_name,
             'rent' => $request->item_rent,
             'price' => $request->item_price
         ]);
@@ -72,7 +71,6 @@ class ItemController extends Controller
                 'room' => $request->uitem_room,
                 'total' => $request->uitem_total,
                 'balcony' => $request->uitem_balcony,
-                'name' => $request->uitem_name,
                 'rent' => $request->uitem_rent,
                 'price' => $request->uitem_price,
                 'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget
@@ -95,7 +93,6 @@ class ItemController extends Controller
                 'room' => $request->uitem_room,
                 'total' => $request->uitem_total,
                 'balcony' => $request->uitem_balcony,
-                'name' => $request->uitem_name,
                 'rent' => $request->uitem_rent,
                 'price' => $request->uitem_price,
             ]);
@@ -115,7 +112,6 @@ class ItemController extends Controller
                 'room' => $request->uitem_room,
                 'total' => $request->uitem_total,
                 'balcony' => $request->uitem_balcony,
-                'name' => $request->uitem_name,
                 'rent' => $request->uitem_rent,
                 'price' => $request->uitem_price,
                 'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget
@@ -131,7 +127,6 @@ class ItemController extends Controller
                 'room' => $request->uitem_room,
                 'total' => $request->uitem_total,
                 'balcony' => $request->uitem_balcony,
-                'name' => $request->uitem_name,
                 'rent' => $request->uitem_rent,
                 'price' => $request->uitem_price,
             ]);
