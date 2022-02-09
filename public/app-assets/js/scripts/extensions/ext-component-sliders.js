@@ -48,6 +48,7 @@ $(function () {
       //   density: 5
       // }
     });
+    $('.noUi-tooltip').prepend('CHF ');
   }
 
   

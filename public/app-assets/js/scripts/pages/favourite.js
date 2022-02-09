@@ -108,14 +108,14 @@ $('#pips-range').on('click mouseover', function(e){
 
 $('#basicSelect').on('change', function(e){
     var val = $(this).val();
-    window.location.href = '/show/' + val;            
+    window.location.href = '/category/' + val;            
 });
 
 
 $('.filter__room__one').on('click', function(e){
     var i = 0
     for(i; i< $('.item__room').length; i++){
-        if($('.item__room:eq('+i+')').text() == '1.5'){
+        if($('.item__room:eq('+i+')').text() == '1.5' || $('.item__room:eq('+i+')').text() == '1.5 ZIMMER'){
             $('.item__room:eq('+i+')').parent().parent().show();
         }
         else{
@@ -126,7 +126,7 @@ $('.filter__room__one').on('click', function(e){
 $('.filter__room__two').on('click', function(e){
     var i = 0
     for(i; i< $('.item__room').length; i++){
-        if($('.item__room:eq('+i+')').text() == '2.5'){
+        if($('.item__room:eq('+i+')').text() == '2.5' || $('.item__room:eq('+i+')').text() == '2.5 ZIMMER'){
             $('.item__room:eq('+i+')').parent().parent().show();
         }
         else{
@@ -137,7 +137,7 @@ $('.filter__room__two').on('click', function(e){
 $('.filter__room__three').on('click', function(e){
     var i = 0
     for(i; i< $('.item__room').length; i++){
-        if($('.item__room:eq('+i+')').text() == '3.5'){
+        if($('.item__room:eq('+i+')').text() == '3.5' || $('.item__room:eq('+i+')').text() == '3.5 ZIMMER'){
             $('.item__room:eq('+i+')').parent().parent().show();
         }
         else{
