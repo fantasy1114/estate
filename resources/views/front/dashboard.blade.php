@@ -133,6 +133,9 @@
             background-color: rgba(34, 41, 47, 0.2);
             border-radius: 0.1785rem;
         }
+        .item__image__size{
+            height: 100px;
+        }
 
         @media (max-width: 992px) { 
             .category__select{
@@ -175,6 +178,9 @@
             }
             .dashboard-content-body{
                 margin-left: 0px;
+            }
+            .item__image__size{
+                height: 150px;
             }
         }
        
@@ -270,7 +276,7 @@
                                         </a>
                                     </div>
                                     <div class="mt-2">
-                                        <img src="{{$item->item_img}}" class="w-100" style="height: 100px;">
+                                        <img src="{{$item->item_img}}" class="w-100 item__image__size">
                                     </div>
                                     <div class="d-flex justify-content-between mt-2 column__border__one">
                                         <span>{{$item->floor}}</span> <span class="item__room">{{$item->room}} ZIMMER</span> 
