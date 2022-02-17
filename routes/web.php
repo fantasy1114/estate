@@ -6,6 +6,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
     Route::post('item-create', [ItemController::class, 'create'])->name('item.create');
     Route::post('item-update/{id}', [ItemController::class, 'update'])->name('item.update');
     Route::post('item-delete/{id}', [ItemController::class, 'delete'])->name('item.delete');
+
+    Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::post('customer-create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('customer-update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::post('customer-delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
 
 });
 

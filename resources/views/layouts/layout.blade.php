@@ -30,6 +30,12 @@
                     <i data-feather='briefcase'></i><span class="menu-title text-truncate @if(Request::path() == 'product') text-white @endif">Product</span>
                 </a>
             </li>
+
+            <li class="nav-item mt-1">
+                <a class="d-flex align-items-center rounded @if(Request::path() == 'customer') bg-primary @endif" href="{{route('customer.index')}}">
+                    <i data-feather='users'></i><span class="menu-title text-truncate @if(Request::path() == 'customer') text-white @endif">Customer</span>
+                </a>
+            </li>
             
             
         </ul>
