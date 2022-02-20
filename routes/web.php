@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MailcontentController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -54,6 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::post('customer-create', [CustomerController::class, 'create'])->name('customer.create');
     Route::post('customer-update/{id}', [CustomerController::class, 'update'])->name('customer.update');
     Route::post('customer-delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+
+    Route::get('mailcontent', [MailcontentController::class, 'index'])->name('mailcontent.index');
+    Route::post('mailcontent-create', [MailcontentController::class, 'create'])->name('mailcontent.create');
+    Route::post('mailcontent-update/{id}', [MailcontentController::class, 'update'])->name('mailcontent.update');
 
 });
 

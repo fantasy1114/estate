@@ -36,6 +36,12 @@
                     <i data-feather='users'></i><span class="menu-title text-truncate @if(Request::path() == 'customer') text-white @endif">Customer</span>
                 </a>
             </li>
+
+            <li class="nav-item mt-1">
+                <a class="d-flex align-items-center rounded @if(Request::path() == 'mailcontent') bg-primary @endif" href="{{route('mailcontent.index')}}">
+                    <i data-feather='mail'></i><span class="menu-title text-truncate @if(Request::path() == 'mailcontent') text-white @endif">Mail</span>
+                </a>
+            </li>
             
             
         </ul>

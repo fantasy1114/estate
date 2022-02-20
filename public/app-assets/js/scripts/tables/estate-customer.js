@@ -26,6 +26,7 @@ $(function() {
                 { data: 'max_price' },
                 { data: 'min_size' },
                 { data: 'max_size' },
+                { data: 'region' },
                 { data: 'action' }
             ],
             columnDefs: [{
@@ -152,6 +153,7 @@ $(function() {
         $("#ucustomer_max_price").val($(this).data('max_price'));
         $("#ucustomer_min_size").val($(this).data('min_size'));
         $("#ucustomer_max_size").val($(this).data('max_size'));
+        $("#ucustomer_region").val($(this).data('region'));
         $(".edit-data-modal").modal('show');
 
         $('.edit-data-form').on("submit", function(e) {

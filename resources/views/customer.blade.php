@@ -41,6 +41,7 @@
                                         <th>Max Price</th>
                                         <th>Min Size</th>
                                         <th>Max Size</th>
+                                        <th>region</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -54,8 +55,9 @@
                                         <td>CHF {{$customer->max_price}}</td>
                                         <td>{{$customer->min_size}} m<sup>2</sup></td>
                                         <td>{{$customer->max_size}} m<sup>2</sup></td>
+                                        <td>{{$customer->region}}</td>
                                         <td>
-                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-email="{{$customer->email}}" data-phone="{{$customer->phone}}" data-min_price="{{$customer->min_price}}" data-max_price="{{$customer->max_price}}" data-min_size="{{$customer->min_size}}" data-max_size="{{$customer->max_size}}">
+                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-email="{{$customer->email}}" data-phone="{{$customer->phone}}" data-min_price="{{$customer->min_price}}" data-max_price="{{$customer->max_price}}" data-min_size="{{$customer->min_size}}" data-max_size="{{$customer->max_size}}" data-region="{{$customer->region}}">
                                                 <i data-feather='edit'></i>
                                                 <span></span>
                                             </button>
@@ -126,6 +128,10 @@
                                                 placeholder="0000" name="customer_min_size" aria-label="customer_min_size"
                                                 aria-describedby="customer_min_size" required/>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="region">Region</label>
+                                            <input type="text" class="form-control" id="customer_region" placeholder="Hometown" name="customer_region" aria-label="customer_region" aria-describedby="customer_region" required>
+                                        </div>
                                         
                                         <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary"
@@ -172,7 +178,7 @@
                                                 aria-describedby="ucustomer_max_price" required/>
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label" for="ucustomer_min_price">Man Price</label>
+                                            <label class="form-label" for="ucustomer_min_price">Min Price</label>
                                             <input type="number" class="form-control" id="ucustomer_min_price"
                                                 placeholder="0000" name="ucustomer_min_price" aria-label="ucustomer_min_price"
                                                 aria-describedby="ucustomer_min_price" required/>
@@ -188,6 +194,10 @@
                                             <input type="number" class="form-control" id="ucustomer_min_size"
                                                 placeholder="0000" name="ucustomer_min_size" aria-label="ucustomer_min_size"
                                                 aria-describedby="ucustomer_min_size" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="ucustomer_region">Region</label>
+                                            <input type="text" class="form-control" id="ucustomer_region" placeholder="Hometown" name="ucustomer_region" aria-label="ucustomer_region" aria-describedby="ucustomer_region" required>
                                         </div>
                                         
                                         <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>

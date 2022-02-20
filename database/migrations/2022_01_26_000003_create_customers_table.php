@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('max_price')->nullable();
             $table->string('min_size')->nullable();
             $table->string('max_size')->nullable();
-            $table->string('owner')->nullable();
+            $table->string('region')->nullable();
             $table->timestamps();
         });
     }
