@@ -25,6 +25,7 @@ class CreateItemsTable extends Migration
             $table->string('balcony');
             $table->string('rent')->default('vermietet');
             $table->string('price');
+            $table->string('iso')->nullable();
             $table->string('infos')->nullable();
             $table->string('favourite')->nullable();
             $table->timestamps();

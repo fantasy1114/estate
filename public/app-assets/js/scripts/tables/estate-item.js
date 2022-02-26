@@ -27,6 +27,7 @@ $(function () {
                 { data: 'item_balcony' },
                 { data: 'item_rent' },
                 { data: 'item_price' },
+                { data: 'item_iso' },
                 { data: 'item_infos' },
                 { data: 'action' }
             ],
@@ -121,6 +122,9 @@ $(function () {
                 'item_rent': {
                     required: true
                 },
+                'item_iso': {
+                    required: true
+                },
                 'item_infos': {
                     required: true
                 }
@@ -168,7 +172,12 @@ $(function () {
     var itemUploadImg = $('#item-upload-img'),
         itemUploadBtn = $('#item-upload'),
         uitemUploadImg = $('#uitem-upload-img'),
-        uitemUploadBtn = $('#uitem-upload')
+        uitemUploadBtn = $('#uitem-upload'),
+        isoUploadImg = $('#iso-upload-img'),
+        isoUploadBtn = $('#iso-upload'),
+        uisoUploadImg = $('#uiso-upload-img'),
+        uisoUploadBtn = $('#uiso-upload')
+        
     if (itemUploadBtn) {
         itemUploadBtn.on('change', function (e) {
             var reader = new FileReader(),
@@ -181,6 +190,18 @@ $(function () {
             reader.readAsDataURL(files[0]);
         });
     }
+    if (isoUploadBtn) {
+        isoUploadBtn.on('change', function (e) {
+            var reader = new FileReader(),
+                files = e.target.files;
+            reader.onload = function () {
+                if (isoUploadImg) {
+                    isoUploadImg.attr('src', reader.result);
+                }
+            };
+            reader.readAsDataURL(files[0]);
+        });
+    }
     if (uitemUploadBtn) {
         uitemUploadBtn.on('change', function (e) {
             var reader = new FileReader(),
@@ -188,6 +209,18 @@ $(function () {
             reader.onload = function () {
                 if (uitemUploadImg) {
                     uitemUploadImg.attr('src', reader.result);
+                }
+            };
+            reader.readAsDataURL(files[0]);
+        });
+    }
+    if (uisoUploadBtn) {
+        uisoUploadBtn.on('change', function (e) {
+            var reader = new FileReader(),
+                files = e.target.files;
+            reader.onload = function () {
+                if (uisoUploadImg) {
+                    uisoUploadImg.attr('src', reader.result);
                 }
             };
             reader.readAsDataURL(files[0]);
@@ -206,7 +239,7 @@ $(function () {
         $("#uitem_balcony").val($(this).data('balcony'));
         $("#uitem_rent").val($(this).data('rent'));
         $("#uitem_price").val($(this).data('price'));
-
+        $("#uiso-upload-img").attr('src', $(this).data('iso'));
         $(".edit-data-modal").modal('show');
 
         $('.edit-data-form').on("submit", function (e) {

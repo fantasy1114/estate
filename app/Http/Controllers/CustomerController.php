@@ -36,19 +36,21 @@ class CustomerController extends Controller
             return response()->json(['success' => true]);
         }
         else{
+            // $mailcontents = DB::table('mailcontents')->get()[0];
 
-            $email = new \SendGrid\Mail\Mail();
+            // $email = new \SendGrid\Mail\Mail();
 
-            $email->setFrom(env('SENDGRID_SENDER_MAIL'), 'Estate');
-            $email->setSubject('finding');
-            $email->addTo($request->client_email, "User");
-            $email->addContent("text/plain", "Message");
-            $email->addContent(
-                "text/html", "<button style='width:300px;height:60px;background-color:#f4662f;font-size:16px;color:#fff;font-weight:bold;border-radius:30px;border:none;'> Hello" . $request->customer_name . "</button>"."<p>We found </p>"
-            );
-            $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+            // $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+            // $email->setSubject($mailcontents->subject);
+            // $email->addTo($request->customer_email, "User");
+            // $email->addContent("text/plain", "Message");
+            // $email->addContent(
+            //     "text/html", "<p> Hello " . $request->customer_name . "</p><p>".$mailcontents->content."</p>"
+            // );
+            // $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
 
-            $response = $sendgrid->send($email);
+            // $response = $sendgrid->send($email);
+            return response()->json(['success' => true]);
         }
     
         return response()->json(['success' => true]);

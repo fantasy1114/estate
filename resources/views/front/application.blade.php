@@ -4,7 +4,25 @@
     @include('layouts.header')
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/wizard/bs-stepper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-wizard.css')}}">
-    
+    <style>
+        .btn, .btn-primary{
+            background-color: #b5a899 !important;
+            border-radius: 0px !important;
+            border: none !important;
+        }
+        .btn-primary:focus, .btn-primary:active, .btn-primary.active{
+            background-color: #b5a899 !important;
+        }
+        .custom-control-input:checked ~ .custom-control-label::before{
+            
+            border-color: #b5a899 !important;;
+            background-color: #b5a899 !important;
+        }
+        .form-control{
+            border-radius: 0px !important;
+        }
+        
+    </style>
     {{-- HEAD --}}
     <body>
         <div class="content-wrapper">
@@ -20,8 +38,8 @@
                                         <button type="button" class="step-trigger">
                                             <span class="bs-stepper-box">1</span>
                                             <span class="bs-stepper-label">
-                                                <span class="bs-stepper-title">Account Details</span>
-                                                <span class="bs-stepper-subtitle">Setup Account Details</span>
+                                                <span class="bs-stepper-title">1</span>
+                                                <span class="bs-stepper-subtitle">1</span>
                                             </span>
                                         </button>
                                     </div>
@@ -32,8 +50,8 @@
                                         <button type="button" class="step-trigger">
                                             <span class="bs-stepper-box">2</span>
                                             <span class="bs-stepper-label">
-                                                <span class="bs-stepper-title">Personal Info</span>
-                                                <span class="bs-stepper-subtitle">Add Personal Info</span>
+                                                <span class="bs-stepper-title">2</span>
+                                                <span class="bs-stepper-subtitle">2</span>
                                             </span>
                                         </button>
                                     </div>
@@ -44,8 +62,8 @@
                                         <button type="button" class="step-trigger">
                                             <span class="bs-stepper-box">3</span>
                                             <span class="bs-stepper-label">
-                                                <span class="bs-stepper-title">Address</span>
-                                                <span class="bs-stepper-subtitle">Add Address</span>
+                                                <span class="bs-stepper-title">3</span>
+                                                <span class="bs-stepper-subtitle">3</span>
                                             </span>
                                         </button>
                                     </div>
@@ -56,8 +74,8 @@
                                         <button type="button" class="step-trigger">
                                             <span class="bs-stepper-box">4</span>
                                             <span class="bs-stepper-label">
-                                                <span class="bs-stepper-title">Social Links</span>
-                                                <span class="bs-stepper-subtitle">Add Social Links</span>
+                                                <span class="bs-stepper-title">4</span>
+                                                <span class="bs-stepper-subtitle">4</span>
                                             </span>
                                         </button>
                                     </div>
@@ -72,9 +90,12 @@
                                             <div class="form-group row">
                                                 <div class="col-md-6">
                                                     <label class="form-label" for="apartment_num">Wohnungsnummer</label>
-                                                    <input type="text" class="form-control" id="apartment_num"
-                                                    placeholder="" name="apartment_num" aria-label="apartment_num"
-                                                    aria-describedby="apartment_num" required/>
+                                                    @foreach ($items as $item)
+                                                        <input type="text" class="form-control" id="apartment_num"
+                                                        placeholder="" name="apartment_num" aria-label="apartment_num"
+                                                        aria-describedby="apartment_num" value="{{$item->floor}}" readonly/>
+                                                    @endforeach
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label" for="floor">Stockwerk</label>
@@ -103,7 +124,7 @@
                                             </div>
                                         </form>
                                         <div class="d-flex justify-content-between">
-                                            <button class="btn btn-outline-secondary btn-prev" disabled>
+                                            <button class="btn btn-outline-secondary btn-prev invisible" disabled>
                                                 <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>

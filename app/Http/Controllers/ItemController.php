@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class ItemController extends Controller
 {
@@ -20,6 +21,7 @@ class ItemController extends Controller
     {
         $product_id = $request->product_id;
         $filename = $request->file('item-upload')->getClientOriginalName();
+        $isoname = $request->file('iso-upload')->getClientOriginalName();
         DB::table('items')->insert([
             'product_id' => $product_id,
             'floor' => $request->item_floor,
@@ -39,12 +41,38 @@ class ItemController extends Controller
             $infoPath = $request->file('item-upload-pdf');
             $infonameget = $id . '.pdf';
             $infoPath->move(public_path('/app-assets/uploads/items/' . $product_id), $infonameget);
+
+            $isoPath = $request->file('item-upload');
+            $isonameget = str_contains($isoname, '.svg') ? $id . '.svg' : $id . '.png';
+            $isoPath->move(public_path('/app-assets/uploads/items/' . $product_id), $isonameget);
         }
         DB::table('items')->where('id', $id)->update([
-            'item_img' => '/app-assets/uploads/items/' . $product_id . '/' . $imagenameget,
-            'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget,
-
+            'item_img' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
+            'iso' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
+            'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
         ]);
+
+        $customers = DB::table('customers')->get();
+        $mailcontents = DB::table('mailcontents')->get()[0];
+        $price = $request->item_price;
+        $size = $request->item_size;
+        // foreach($customers as $customer){
+        //     if ($customer->min_price < $price && $price < $customer->max_price && $size < $customer->max_size && $customer->min_size < $size ){
+
+        //         $email = new \SendGrid\Mail\Mail();
+
+        //         $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+        //         $email->setSubject($mailcontents->subject);
+        //         $email->addTo($customer->email, "User");
+        //         $email->addContent("text/plain", "Message");
+        //         $email->addContent(
+        //             "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+        //         );
+        //         $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+
+        //         $response = $sendgrid->send($email);
+        //     }
+        // }
 
         return response()->json(['success' => true]);
     }
@@ -53,6 +81,9 @@ class ItemController extends Controller
     {
         $product_id = $request->product_id;
         $infonameget = $id . '.pdf';
+        $customers = DB::table('customers')->get();
+        $mailcontents = DB::table('mailcontents')->get()[0];
+
         if ($request->file('uitem-upload') && $request->file('uitem-upload-pdf')) {
             $filename = $request->file('uitem-upload')->getClientOriginalName();
             $imagenameget = str_contains($filename, '.svg') ? $id . '.svg' : $id . '.png';
@@ -76,6 +107,24 @@ class ItemController extends Controller
                 'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget
             ]);
 
+            foreach($customers as $customer){
+                if ($customer->min_price < $request->item_price && $request->item_price < $customer->man_price && $request->item_total < $customer->max_size && $customer->min_size < $request->item_total ){
+    
+                    $email = new \SendGrid\Mail\Mail();
+    
+                    $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+                    $email->setSubject($mailcontents->subject);
+                    $email->addTo($customer->email, "User");
+                    $email->addContent("text/plain", "Message");
+                    $email->addContent(
+                        "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+                    );
+                    $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+    
+                    $response = $sendgrid->send($email);
+                }
+            }
+
             return response()->json(['success' => true]);
         }
         else if($request->file('uitem-upload')){
@@ -97,6 +146,24 @@ class ItemController extends Controller
                 'price' => $request->uitem_price,
             ]);
 
+            foreach($customers as $customer){
+                if ($customer->min_price < $request->item_price && $request->item_price < $customer->man_price && $request->item_total < $customer->max_size && $customer->min_size < $request->item_total ){
+    
+                    $email = new \SendGrid\Mail\Mail();
+    
+                    $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+                    $email->setSubject($mailcontents->subject);
+                    $email->addTo($customer->email, "User");
+                    $email->addContent("text/plain", "Message");
+                    $email->addContent(
+                        "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+                    );
+                    $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+    
+                    $response = $sendgrid->send($email);
+                }
+            }
+
             return response()->json(['success' => true]);
         }
 
@@ -117,6 +184,24 @@ class ItemController extends Controller
                 'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget
             ]);
 
+            foreach($customers as $customer){
+                if ($customer->min_price < $request->item_price && $request->item_price < $customer->man_price && $request->item_total < $customer->max_size && $customer->min_size < $request->item_total ){
+    
+                    $email = new \SendGrid\Mail\Mail();
+    
+                    $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+                    $email->setSubject($mailcontents->subject);
+                    $email->addTo($customer->email, "User");
+                    $email->addContent("text/plain", "Message");
+                    $email->addContent(
+                        "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+                    );
+                    $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+    
+                    $response = $sendgrid->send($email);
+                }
+            }
+
             return response()->json(['success' => true]);
         }
         else{
@@ -131,18 +216,43 @@ class ItemController extends Controller
                 'price' => $request->uitem_price,
             ]);
 
+            foreach($customers as $customer){
+                if ($customer->min_price < $request->item_price && $request->item_price < $customer->man_price && $request->item_total < $customer->max_size && $customer->min_size < $request->item_total ){
+    
+                    $email = new \SendGrid\Mail\Mail();
+    
+                    $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+                    $email->setSubject($mailcontents->subject);
+                    $email->addTo($customer->email, "User");
+                    $email->addContent("text/plain", "Message");
+                    $email->addContent(
+                        "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+                    );
+                    $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+    
+                    $response = $sendgrid->send($email);
+                }
+            }
+
             return response()->json(['success' => true]);
         }
+
     }
 
     public function delete($id)
     {
         $items = DB::table('items')->where('id', $id)->get();
-        foreach($items as $item){
-            unlink('.'.$item->item_img);
-            unlink('.'.$item->infos);
+        try{
+            foreach($items as $item){
+                unlink('.'.$item->item_img);
+                unlink('.'.$item->infos);
+            }
+            DB::table('items')->where('id', $id)->delete();
         }
-        DB::table('items')->where('id', $id)->delete();
+        catch(Exception $e){
+            DB::table('items')->where('id', $id)->delete();
+        }
+        
         return response()->json(['success'=>true]);
     }
 

@@ -86,6 +86,7 @@ class ProductController extends Controller
             return response()->json(['success'=>true]);
         }
         catch (Exception $e) {
+            DB::table('products')->where('id', $id)->delete();
             return response()->json(['success'=>false]);
         }
        

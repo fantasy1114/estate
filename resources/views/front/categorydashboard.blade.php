@@ -148,6 +148,10 @@
             height: 100px;
         }
 
+        .table th, .table td{
+            padding: 0.72rem 5px !important;
+        }
+
         @media (max-width: 992px) { 
             .category__select{
                 width: 80%;
@@ -180,6 +184,15 @@
         @media (max-width: 768px) { 
             .category__select{
                 width: 100%;
+            }
+            .table th, .table td{
+                padding: 0.72rem 1px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .table th, .table td{
+                padding: 0.72rem 0px !important;
             }
         }
 
@@ -246,12 +259,12 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Floor</th>
-                                        <th>Apt</th>
-                                        <th>Room</th>
+                                        <th>Etage</th>
+                                        <th>Whg</th>
+                                        <th>Zi.</th>
                                         <th>Total WF</th>
-                                        <th>Balcony</th>
-                                        <th>Status</th>
+                                        <th>Balkon</th>
+                                        <th>Mietzins*</th>
                                         <th>Infos</th>
                                     </tr>
                                 </thead>

@@ -42,6 +42,7 @@
                                         <th>Balcony</th>
                                         <th>Status</th>
                                         <th>Price</th>
+                                        <th>Iso</th>
                                         <th>Infos</th>
                                         <th>Action</th>
                                     </tr>
@@ -57,9 +58,10 @@
                                         <td>{{$item->balcony}} m<sup>2</sup></td>
                                         <td><span style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</span></td>
                                         <td>CHF {{$item->price}}</td>
+                                        <td><img src="{{$item->item_img}}" alt="item" class="product_img_size rounded"></td>
                                         <td><i data-feather='file-text' style="zoom:1.2"></i> <a href="{{$item->infos}}" target="_blank" style="text-decoration: underline;">Details</a></td>
                                         <td>
-                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}">
+                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}" data-iso="{{$item->item_img}}">
                                                 <i data-feather='edit'></i>
                                                 <span></span>
                                             </button>
@@ -157,6 +159,24 @@
                                             <input type="number" step="0.01" class="form-control dt-full-name" id="item_price"
                                                 placeholder="100" name="item_price" aria-label="item_price"
                                                 aria-describedby="item_price" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label" for="isometry">Isometry</label>
+                                            <!-- header media -->
+                                                <div class="media">
+                                                    <a href="javascript:void(0);" class="mr-25">
+                                                        <img src="#" id="iso-upload-img" class="rounded mr-50" alt="image" height="80" width="80" />
+                                                    </a>
+                                                    <!-- upload and reset button -->
+                                                    <div class="media-body mt-75 ml-1">
+                                                        <label for="iso-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                        <input type="file" id="iso-upload" name="iso-upload" hidden accept="image/*" />
+                                                    </div>
+                                                    <!--/ upload and reset button -->
+                                                </div>
+                                            <!--/ header media -->
+                                            
                                         </div>
 
                                         <div class="form-group">
@@ -259,6 +279,24 @@
                                             <input type="number" step="0.01" class="form-control dt-full-name" id="uitem_price"
                                                 placeholder="100" name="uitem_price" aria-label="uitem_price"
                                                 aria-describedby="uitem_price" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label" for="isometry">Isometry</label>
+                                            <!-- header media -->
+                                                <div class="media">
+                                                    <a href="javascript:void(0);" class="mr-25">
+                                                        <img src="#" id="uiso-upload-img" class="rounded mr-50" alt="image" height="80" width="80" />
+                                                    </a>
+                                                    <!-- upload and reset button -->
+                                                    <div class="media-body mt-75 ml-1">
+                                                        <label for="uiso-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                        <input type="file" id="uiso-upload" name="iso-upload" hidden accept="image/*" />
+                                                    </div>
+                                                    <!--/ upload and reset button -->
+                                                </div>
+                                            <!--/ header media -->
+                                            
                                         </div>
 
                                         <div class="form-group">
