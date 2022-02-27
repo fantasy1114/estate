@@ -116,7 +116,8 @@
         .dashboard-sidebar{
             width: 350px;
             vertical-align: top;
-            padding-top: 215px;
+            padding-top: 200px;
+            position: fixed;
         }
         .shop_response_btn > .icon__fill{
             color: #444440;
@@ -152,7 +153,10 @@
             padding: 0.72rem 5px !important;
         }
 
-        @media (max-width: 992px) { 
+        @media (max-width: 992px) {
+            .dashboard-sidebar{
+                position: inherit;
+            }
             .category__select{
                 width: 80%;
             }
@@ -215,7 +219,7 @@
     <div class="dashboard-content-detached dashboard-content-right">
         <div class="dashboard-content-body">
             <div class="col-12">
-                <div class="row mt-5">
+                <div class="row mt-3">
 
                     <div class="form-group category__select">
                         
@@ -271,13 +275,12 @@
                                 <tbody>
                                     @foreach ($products as $product)
                                         @foreach ($product->product_item as $item)
-                                            <tr data-over="{{$item->item_img}}" class="tr_change">
+                                            <tr data-over="{{$item->iso}}" class="tr_change">
                                                 <td>
                                                     <a class="item_favourite item_favourite{{$item->id}} {{$item->favourite == 'on' ? 'item__favourite_on' : 'item__favourite_off'}}" data-id="{{$item->id}}">
                                                         <i data-feather="heart" class="icon__fill"></i>
                                                         <span class="d-none price__filter">{{$item->price}}</span>
                                                     </a>
-                                                    
                                                 </td>
                                                 <td>{{$item->floor}}</td>
                                                 <td>{{$item->apt}}</td>
@@ -295,7 +298,7 @@
                         <div class="column__table row">
                             @foreach ($products as $product)
                                 @foreach ($product->product_item as $item)
-                                    <div class="col-lg-3 col-md-4 col-sm-6 px-lg-2 mt-1 tr_change" data-over="{{$item->item_img}}" style="cursor: pointer;">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 px-lg-2 mt-1 tr_change" data-over="{{$item->iso}}" style="cursor: pointer;">
                                         <div>
                                             <a class="item_favourite font-weight-bold item_favourite{{$item->id}} {{$item->favourite == 'on' ? 'item__favourite_on' : 'item__favourite_off'}}" data-id="{{$item->id}}">
                                                 <i data-feather="heart" class="icon__fill"></i> AHORN

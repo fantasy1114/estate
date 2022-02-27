@@ -58,10 +58,10 @@
                                         <td>{{$item->balcony}} m<sup>2</sup></td>
                                         <td><span style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') red @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}}</span></td>
                                         <td>CHF {{$item->price}}</td>
-                                        <td><img src="{{$item->item_img}}" alt="item" class="product_img_size rounded"></td>
+                                        <td><img src="{{$item->iso}}" alt="item" class="product_img_size rounded"></td>
                                         <td><i data-feather='file-text' style="zoom:1.2"></i> <a href="{{$item->infos}}" target="_blank" style="text-decoration: underline;">Details</a></td>
                                         <td>
-                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}" data-iso="{{$item->item_img}}">
+                                            <button class="dropdown-item data_edit_btn d-inline w-auto rounded" data-id="{{$item->id}}" data-item_img="{{$item->item_img}}" data-floor="{{$item->floor}}" data-apt="{{$item->apt}}" data-room="{{$item->room}}" data-total="{{$item->total}}" data-balcony="{{$item->balcony}}" data-rent="{{$item->rent}}" data-price="{{$item->price}}" data-iso="{{$item->iso}}">
                                                 <i data-feather='edit'></i>
                                                 <span></span>
                                             </button>

@@ -107,7 +107,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="customer_max_price">Max Price</label>
                                             <input type="number" class="form-control" id="customer_max_price"
-                                                placeholder="9999" name="customer_max_price" aria-label="customer_max_price"
+                                                max="999999" name="customer_max_price" aria-label="customer_max_price"
                                                 aria-describedby="customer_max_price" required/>
                                         </div>
                                         <div class="form-group">
@@ -119,7 +119,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="customer_max_size">Max Size</label>
                                             <input type="number" class="form-control" id="customer_max_size"
-                                                placeholder="9999" name="customer_max_size" aria-label="customer_max_size"
+                                                placeholder="9999" max="9999" name="customer_max_size" aria-label="customer_max_size"
                                                 aria-describedby="customer_max_size" required/>
                                         </div>
                                         <div class="form-group">

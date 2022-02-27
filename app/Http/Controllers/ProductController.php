@@ -79,15 +79,22 @@ class ProductController extends Controller
     {
         try{
             $products = DB::table('products')->where('id', $id)->get();
+            
             foreach($products as $product){
-                unlink('.'.$product->product_img);
+                unlink($product->product_img);                
             }
             DB::table('products')->where('id', $id)->delete();
             return response()->json(['success'=>true]);
         }
         catch (Exception $e) {
-            DB::table('products')->where('id', $id)->delete();
-            return response()->json(['success'=>false]);
+            try{
+                DB::table('products')->where('id', $id)->delete();
+                return response()->json(['success'=>true]);
+            }
+            catch (Exception $e) {
+                return response()->json(['success'=>false]);
+            }
+            
         }
        
     }

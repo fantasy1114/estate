@@ -22,6 +22,7 @@ class ItemController extends Controller
         $product_id = $request->product_id;
         $filename = $request->file('item-upload')->getClientOriginalName();
         $isoname = $request->file('iso-upload')->getClientOriginalName();
+
         DB::table('items')->insert([
             'product_id' => $product_id,
             'floor' => $request->item_floor,
@@ -42,48 +43,50 @@ class ItemController extends Controller
             $infonameget = $id . '.pdf';
             $infoPath->move(public_path('/app-assets/uploads/items/' . $product_id), $infonameget);
 
-            $isoPath = $request->file('item-upload');
+            $isoPath = $request->file('iso-upload');
             $isonameget = str_contains($isoname, '.svg') ? $id . '.svg' : $id . '.png';
             $isoPath->move(public_path('/app-assets/uploads/items/' . $product_id), $isonameget);
         }
         DB::table('items')->where('id', $id)->update([
-            'item_img' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
+            'item_img' => '/app-assets/uploads/items/' . $product_id . '/' . $imagenameget,
             'iso' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
-            'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $isonameget,
+            'infos' => '/app-assets/uploads/items/' . $product_id . '/' . $infonameget,
         ]);
 
         $customers = DB::table('customers')->get();
         $mailcontents = DB::table('mailcontents')->get()[0];
         $price = $request->item_price;
         $size = $request->item_size;
-        // foreach($customers as $customer){
-        //     if ($customer->min_price < $price && $price < $customer->max_price && $size < $customer->max_size && $customer->min_size < $size ){
+        foreach($customers as $customer){
+            if ($customer->min_price < $price && $price < $customer->max_price && $size < $customer->max_size && $customer->min_size < $size ){
 
-        //         $email = new \SendGrid\Mail\Mail();
+                $email = new \SendGrid\Mail\Mail();
 
-        //         $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
-        //         $email->setSubject($mailcontents->subject);
-        //         $email->addTo($customer->email, "User");
-        //         $email->addContent("text/plain", "Message");
-        //         $email->addContent(
-        //             "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
-        //         );
-        //         $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+                $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+                $email->setSubject($mailcontents->subject);
+                $email->addTo($customer->email, "User");
+                $email->addContent("text/plain", "Message");
+                $email->addContent(
+                    "text/html", "<p> Hello " . $customer->name . "</p><p>".$mailcontents->content."</p>"
+                );
+                $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
 
-        //         $response = $sendgrid->send($email);
-        //     }
-        // }
+                $response = $sendgrid->send($email);
+            }
+        }
 
         return response()->json(['success' => true]);
     }
 
     public function update(Request $request, $id)
     {
+        
         $product_id = $request->product_id;
+        
         $infonameget = $id . '.pdf';
         $customers = DB::table('customers')->get();
         $mailcontents = DB::table('mailcontents')->get()[0];
-
+        
         if ($request->file('uitem-upload') && $request->file('uitem-upload-pdf')) {
             $filename = $request->file('uitem-upload')->getClientOriginalName();
             $imagenameget = str_contains($filename, '.svg') ? $id . '.svg' : $id . '.png';
