@@ -280,6 +280,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between column__border__last">
                                         <a href="@if($item->rent == 'Jetzt bewerben') /application/{{$item->id}} @else # @endif" style="color: @if($item->rent == 'reserviert') blue @endif @if($item->rent == 'vermietet') #DC684F @endif @if($item->rent == 'Jetzt bewerben') green @endif">{{$item->rent}} @if($item->rent == 'Jetzt bewerben')<i data-feather='arrow-right'></i> @endif</a>
+                                        <a href="http://yestate.herokuapp.com/application/7" target="blank"> <i data-feather='link'></i> Order</a>
                                     </div>
                                 </div>
                             @endforeach

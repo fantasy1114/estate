@@ -34,23 +34,23 @@ class CustomerController extends Controller
         if(count($finding_estates) == 0){
             return response()->json(['success' => true]);
         }
-        else{
-            $mailcontents = DB::table('mailcontents')->get()[0];
+        // else{
+        //     $mailcontents = DB::table('mailcontents')->get()[0];
 
-            $email = new \SendGrid\Mail\Mail();
+        //     $email = new \SendGrid\Mail\Mail();
 
-            $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
-            $email->setSubject($mailcontents->subject);
-            $email->addTo($request->customer_email, "User");
-            $email->addContent("text/plain", "Message");
-            $email->addContent(
-                "text/html", "<p> Hello " . $request->customer_name . "</p><p>".$mailcontents->content."</p>"
-            );
-            $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+        //     $email->setFrom(env('SENDGRID_SENDER_MAIL'), $mailcontents->from);
+        //     $email->setSubject($mailcontents->subject);
+        //     $email->addTo($request->customer_email, "User");
+        //     $email->addContent("text/plain", "Message");
+        //     $email->addContent(
+        //         "text/html", "<p> Hello " . $request->customer_name . "</p><p>".$mailcontents->content."</p>"
+        //     );
+        //     $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
 
-            $response = $sendgrid->send($email);
-            return response()->json(['success' => true]);
-        }
+        //     $response = $sendgrid->send($email);
+        //     return response()->json(['success' => true]);
+        // }
     
         return response()->json(['success' => true]);
     }
